@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Orbitron:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #121212;
+  color: #e0e0e0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background ambient effect */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(33, 33, 33, 0.7) 0%, rgba(18, 18, 18, 0.9) 50%, rgba(0, 0, 0, 1) 100%);
+  z-index: -1;
+}
+
+/* Subtle animated accent color */
+.container::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(66, 133, 244, 0.15);
+  filter: blur(60px);
+  animation: float 10s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, 30px); }
+  100% { transform: translate(0, 0); }
+}
+
+.container {
+  text-align: center;
+  padding: 3rem;
+  background-color: rgba(30, 30, 30, 0.7);
+  border: 1px solid rgba(100, 100, 100, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  width: 85%;
+  max-width: 1000px;
+  position: relative;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 8s linear infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  margin-bottom: 2.5rem;
+}
+
+.countdown-item {
+  min-width: 120px;
+  position: relative;
+}
+
+.countdown-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  display: block;
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(66, 133, 244, 0.6);
+}
+
+.countdown-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #9e9e9e;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  font-style: italic;
+  opacity: 0.7;
+  color: #9e9e9e;
+}
+
+/* Add subtle animation to numbers */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+#seconds {
+  animation: pulse 1s infinite;
+}
+
+@media (max-width: 768px) {
+  .countdown-number {
+    font-size: 2.5rem;
+  }
+  
+  .countdown-item {
+    min-width: 90px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .container {
+    padding: 2rem;
+  }
+}

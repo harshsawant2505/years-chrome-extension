@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+  }
+  
+  body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:9px;  
+    height: 100vh;
+  }
+  
+  .popup-container {
+    background-color: #1a1a1a;
+    width: 360px;
+    padding: 28px;
+    border-radius:9px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  h2 {
+    color: #f0f0f0;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+  }
+  
+  label {
+    display: block;
+    margin: 14px 0 6px;
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #252525;
+    color: #e0e0e0;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: border 0.2s ease;
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: #555;
+  }
+  
+  input::placeholder {
+    color: #666;
+  }
+  
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: background-color 0.2s;
+  }
+  
+  button:hover {
+    background-color: #404040;
+  }
+  
+  button:active {
+    background-color: #2a2a2a;
+  }
+  
+  /* Ensure consistent width */
+  @media (max-width: 400px) {
+    .popup-container {
+      width: 92%;
+      min-width: 280px;
+      padding: 20px;
+    }
+  }
