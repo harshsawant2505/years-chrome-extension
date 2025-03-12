@@ -7,7 +7,6 @@ function updateCountdown(targetDate) {
     return;
   }
 
-  // Extract year, month, and day separately
   let targetYear = targetDate.getFullYear();
   let targetMonth = targetDate.getMonth();
   let targetDay = targetDate.getDate();
@@ -16,35 +15,28 @@ function updateCountdown(targetDate) {
   let nowMonth = now.getMonth();
   let nowDay = now.getDate();
 
-  // Calculate years and months correctly
   let years = targetYear - nowYear;
   let months = targetMonth - nowMonth;
   if (months < 0) {
     years--;
-    months += 12; // Adjust for negative months
+    months += 12;
   }
 
-  // Adjust day difference correctly
   let days = targetDay - nowDay;
   if (days < 0) {
-    // Borrow days from previous month
     months--;
     if (months < 0) {
       years--;
       months += 12;
     }
-    
-    // Get the last day of the previous month
     let lastMonthDate = new Date(targetYear, targetMonth, 0).getDate();
     days += lastMonthDate;
   }
 
-  // Calculate the remaining time
   const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-  // Update the HTML elements
   document.getElementById('years').textContent = years;
   document.getElementById('months').textContent = months;
   document.getElementById('days').textContent = days;
@@ -53,15 +45,27 @@ function updateCountdown(targetDate) {
   document.getElementById('seconds').textContent = seconds;
 }
 
-// Load the saved date from storage
 chrome.storage.sync.get(["targetDate", "title"], (data) => {
   let targetDate = data.targetDate ? new Date(data.targetDate) : new Date('August 1, 2027');
-  let title = "Time Untill " +data.title  || "";
-  console.log(title);
-  // Set the title
-  document.getElementById('title').innerHTML = title;
+  let title = data.title ? `TIME UNTIL ${data.title}` : "TIME UNTIL GRADUATION";
+  document.getElementById('countdown-title').textContent = title;
 
-  // Start countdown
   setInterval(() => updateCountdown(targetDate), 1000);
   updateCountdown(targetDate);
+  updateProgress(targetDate)
 });
+
+function updateProgress(targetDate) {
+  const nowDate = new Date().getTime(); // Current time in milliseconds
+  const targetTime = new Date(targetDate).getTime(); // Target time in milliseconds
+
+  if (targetTime <= nowDate) {
+    document.getElementById("progress-bar").style.width = "100%"; // Full progress if target time is reached
+    return;
+  }
+
+  const progress = (nowDate / targetTime) * 100; // Calculate percentage
+  document.getElementById("progress-bar").style.width = progress + "%";
+}
+
+
